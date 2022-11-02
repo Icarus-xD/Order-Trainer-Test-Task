@@ -116,3 +116,62 @@ export const GameWrapper = styled.div`
   padding: 30px 45px;
   background: transparent;
 `;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100wh;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 5;
+`;
+
+export const GameOverModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  max-width: 700px;
+  align-items: center;
+  gap: 60px;
+  padding: 30px 65px;
+  background: #FFF;
+  border-radius: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 20px solid transparent;
+  border-image: linear-gradient(198.7deg, #7F75F0 - 40.02%, #101F32 96.22%);
+  border-image-slice: 1;
+  z-index: 6;
+`;
+
+export const DragPlaceWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  height: 80px;
+  background-color: #FFD748;
+`;
+
+export const DragPlace = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+export const DragObjectsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+`;
+
+export const DragObject = styled.div`
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5));
+  border-radius: 50%;
+  color: white;
+`;

@@ -4,17 +4,21 @@ import { AppWrapper } from '../assets/styledComponents';
 import Game from './Game';
 import Menu from './Menu';
 import Background from '../assets/default.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const Home: FC = () => {
 
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(true);
+  const { gameStatus } = useSelector((state: RootState) => ({
+    gameStatus: state.gameStatus.status,
+  }));
 
   return (
     <AppWrapper>
       {
-        isGameStarted
-          ? <Game />
-          : <Menu />
+        gameStatus === 'settings'
+          ? <Menu />
+          : <Game />
       }
       <Image
         layout='fill'
