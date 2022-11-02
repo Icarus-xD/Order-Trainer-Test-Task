@@ -7,6 +7,7 @@ export const AppWrapper = styled.div`
   width: 100wh;
   height: 100vh;
   background: url('../../public/backgrounds/default.png');
+  z-index: -1;
 `;
 
 export const MenuWrapper = styled.div`
@@ -145,33 +146,54 @@ export const GameOverModalWrapper = styled.div`
   z-index: 6;
 `;
 
-export const DragPlaceWrapper = styled.div`
+export const DragPlaceContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 30px;
   width: auto;
   height: 80px;
   background-color: #FFD748;
+  z-index: 3;
 `;
 
-export const DragPlace = styled.div`
+export const DragPlace = styled.div<{ index: number }>`
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 4;
 `;
 
 export const DragObjectsWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 30px;
   background: none;
 `;
 
-export const DragObject = styled.div`
+export const DragObjectWrapper = styled.div<{ value: number | string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 60px;
   background: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5));
   border-radius: 50%;
   color: white;
+  z-index: 10;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+`;
+
+export const GameModeHintWrapper = styled.div<{ mode: 'ascending' | 'descending' }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: ${props => props.mode === 'ascending' ? 'flex-start' : 'flex-end'};
+  flex-direction: ${props => props.mode === 'ascending' ? 'row' : 'row-reverse'};
+  z-index: 3;
 `;

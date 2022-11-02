@@ -1,21 +1,27 @@
 import { FC, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { GameModeWrapper, MenuButton } from '../assets/styledComponents';
+import { setGameMode } from '../store/gameSettingsSlice';
+import { RootState } from '../store/store';
 
 const GameMode: FC = () => {
 
-  const [isAscending, setIsAscending] = useState<boolean>(true);
+  const dispatch = useDispatch();
+  const { gameMode } = useSelector((state: RootState) => ({
+    gameMode: state.gameSettings.gameMode,
+  }));
 
   return (
     <GameModeWrapper>
       <MenuButton 
-        active={isAscending} 
-        onClick={() => setIsAscending(true)}
+        active={gameMode === 'ascending'} 
+        onClick={() => dispatch(setGameMode('ascending'))}
       >
         По возрастанию
         </MenuButton>
       <MenuButton 
-        active={!isAscending} 
-        onClick={() => setIsAscending(false)}
+        active={gameMode === 'descending'} 
+        onClick={() => dispatch(setGameMode('descending'))}
       >
         По убыванию
       </MenuButton>

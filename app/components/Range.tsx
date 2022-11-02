@@ -1,12 +1,14 @@
-import { DetailedHTMLProps, FC, InputHTMLAttributes } from 'react';
+import { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes } from 'react';
 import { RangeWrapper } from '../assets/styledComponents';
 
-interface RangeProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface RangeProps {
   title: string;
   values: (string | number)[];
+  value: string | number;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Range: FC<RangeProps> = ({ title, values }) => {
+const Range: FC<RangeProps> = ({ title, values, value, onChange }) => {
 
   return (
     <RangeWrapper>
@@ -14,7 +16,7 @@ const Range: FC<RangeProps> = ({ title, values }) => {
       <div>
         { values.map(value => <div>{ value }</div>) }
       </div>
-      <input type='range' list={title} />
+      <input id={title} type='range' value={value} list={title} onChange={onChange} />
       <datalist id={title}>
         { values.map(value => <option value={value} />) }
       </datalist>

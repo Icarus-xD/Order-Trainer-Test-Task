@@ -4,8 +4,8 @@ import { AppWrapper } from '../assets/styledComponents';
 import Game from './Game';
 import Menu from './Menu';
 import Background from '../assets/default.png';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { Provider, useSelector } from 'react-redux';
+import { RootState, store } from '../store/store';
 
 const Home: FC = () => {
 
@@ -24,6 +24,9 @@ const Home: FC = () => {
         layout='fill'
         src={Background}
         alt='background'
+        style={{
+          zIndex: -1,
+        }}
       />
     </AppWrapper>
   );

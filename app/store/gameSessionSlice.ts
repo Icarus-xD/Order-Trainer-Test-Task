@@ -33,14 +33,21 @@ export const gameSessionSlice = createSlice({
       state.initialList = list;
       state.correctList = action.payload.mode === 'ascending' 
         ? list.sort()
-        : list.sort((a, b) => (a < b ? -1 : 1));
+        : list.sort((a, b) => (a < b ? - 1 : 1));
     },
-    setCurrentList: (state, action: PayloadAction<CurrentListType>) => {
-      state.currentList = action.payload;
+
+    setCurrentListItem: (state, action: PayloadAction<{value: string | number, index: number}>) => {
+      const newList = [...state.currentList];
+      newList[action.payload.index] = action.payload.value;
+      state.currentList = newList as (string | null)[] | (number | null)[];
+    },
+
+    deleteInitialStateItem: (state, action: PayloadAction<string | number>) => {
+      state.initialList = state.initialList.filter(item => item !== action.payload);
     },
   },
 });
 
-export const { setCurrentList , setInitialList } = gameSessionSlice.actions;
+export const { setCurrentListItem , setInitialList } = gameSessionSlice.actions;
 
 export default gameSessionSlice.reducer;
