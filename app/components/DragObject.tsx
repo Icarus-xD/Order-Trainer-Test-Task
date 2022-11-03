@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, DragEvent, FC, HTMLAttributes } from 'react';
-import { DragObjectWrapper } from '../assets/styledComponents';
+import { DragObjectSpan, DragObjectWrapper } from '../assets/styledComponents';
 
 interface DragObjectProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   value: number | string;
@@ -32,8 +32,9 @@ const DragObject: FC<DragObjectProps> = ({ value, setDragged, setCurrentItem }) 
       }}
       onDragStart={onDragStart}
       onDragEnd={setCurrentItem}
+      draggable
     >
-      {value}
+      <DragObjectSpan>{ value }</DragObjectSpan>
     </div>
   );
 };

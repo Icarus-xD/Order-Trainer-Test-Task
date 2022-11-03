@@ -1,7 +1,8 @@
-import { DragEvent, FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DragObjectsWrapper, DragPlaceContainer, GameWrapper } from '../assets/styledComponents';
-import { setCurrentListItem } from '../store/gameSessionSlice';
+import { setCurrentListItem, deleteInitialStateItem } from '../store/gameSessionSlice';
+import { setStatus } from '../store/gameStatusSlice';
 import { RootState } from '../store/store';
 import DragObject from './DragObject';
 import DragPlace from './DragPlace';
@@ -31,12 +32,22 @@ const Game: FC = () => {
         index: draggedObjectPlace
       }));
 
-      dispatch(deleteInitailStateItem(draggedObject));
-    } 
+      dispatch(deleteInitialStateItem(draggedObject));
+
+      // new Audio().play()
+    } else {
+      // new Audio().play()
+    }
     
     setDraggedObject(null);
     setDraggedObjectPlace(null);
   };
+
+  useEffect(() => {
+    if (!gameSession.initialList.length) {
+      dispatch(setStatus('final'));
+    }
+  }, [gameSession.initialList]);
 
   return (
     <GameWrapper>
@@ -62,7 +73,6 @@ const Game: FC = () => {
               index={i} 
               value={gameSession.currentList[i]}
               setDragged={setDraggedObjectPlace}
-              setCurrentItem={setCurrentItem}
             />
           ))
         }

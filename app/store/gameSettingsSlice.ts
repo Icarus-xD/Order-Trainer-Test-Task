@@ -20,7 +20,7 @@ export const gameSettingsSlice = createSlice({
   initialState,
   reducers: {
     setObjectsNumber: (state, action: PayloadAction<number>) => {
-      state.objectValues = action.payload;
+      state.objectsNumber = action.payload;
     },
 
     setObjectValues: (state, action: PayloadAction<ObjectValuesType>) => {

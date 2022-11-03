@@ -6,18 +6,20 @@ import { RootState } from '../store/store';
 
 const GameOverModal: FC = () => {
 
-  const { gameStatus } = useSelector((state: RootState) => ({
-    gameStatus: state.gameStatus.status,
-  }));
-
   const dispatch = useDispatch();
+
+  const restartGame = () => {
+    dispatch(setStatus('settings'));
+  };
+
+  // new Audio().play()
 
   return (
     <ModalOverlay>
       <GameOverModalWrapper>
         <h2>Победа!</h2>
         <p>Молодец! Ты успешно справился с заданием!</p>
-        <PrimaryButton onClick={() => setStatus('settings')}>Заново</PrimaryButton>
+        <PrimaryButton onClick={restartGame}>Заново</PrimaryButton>
       </GameOverModalWrapper>
     </ModalOverlay>
   );

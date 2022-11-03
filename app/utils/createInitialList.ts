@@ -12,6 +12,7 @@ export const createInitailList = (count: number, valuesRange: ObjectValuesType) 
       while (initialList.includes(newItem)) {
         newItem = LETTERS[Math.floor(Math.random() * LETTERS.length)];
       }
+      initialList.push(newItem);
     }
   } else {
     for (let i = 0; i < count; i++) {
@@ -22,6 +23,7 @@ export const createInitailList = (count: number, valuesRange: ObjectValuesType) 
       initialList.push(newItem);
     }
   }
+
 
   return initialList;
 };

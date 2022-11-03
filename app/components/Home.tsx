@@ -13,6 +13,8 @@ const Home: FC = () => {
     gameStatus: state.gameStatus.status,
   }));
 
+  // new Audio().play();
+
   return (
     <AppWrapper>
       {

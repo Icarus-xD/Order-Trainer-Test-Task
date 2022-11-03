@@ -31,9 +31,11 @@ export const gameSessionSlice = createSlice({
     setInitialList: (state, action: PayloadAction<InitialListCreation>) => {
       const list = createInitailList(action.payload.count, action.payload.valuesRange);
       state.initialList = list;
-      state.correctList = action.payload.mode === 'ascending' 
-        ? list.sort()
-        : list.sort((a, b) => (a < b ? - 1 : 1));
+      state.currentList = new Array(state.initialList.length).fill(null);
+      state.correctList = list.sort(); 
+      if (action.payload.mode === 'descending') {
+        state.correctList.reverse();
+      }
     },
 
     setCurrentListItem: (state, action: PayloadAction<{value: string | number, index: number}>) => {
@@ -48,6 +50,6 @@ export const gameSessionSlice = createSlice({
   },
 });
 
-export const { setCurrentListItem , setInitialList } = gameSessionSlice.actions;
+export const { setCurrentListItem , setInitialList, deleteInitialStateItem } = gameSessionSlice.actions;
 
 export default gameSessionSlice.reducer;
